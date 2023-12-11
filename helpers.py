@@ -54,9 +54,10 @@ def perform_umap(X, n_neighbors=15, min_dist=0.1, n_components=2, metric='euclid
         n_neighbors=n_neighbors,
         min_dist=min_dist,
         n_components=n_components,
-        metric=metric
-    )
-    return fit.fit_transform(X)
+        metric=metric,
+        random_state=0
+    ).fit(X)
+    return fit, fit.transform(X)
 
 def perform_pca(X, n_components = 2):
     return PCA().fit_transform(X)
