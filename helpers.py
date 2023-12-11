@@ -61,11 +61,20 @@ def perform_umap(X, n_neighbors=15, min_dist=0.1, n_components=2, metric='euclid
 def perform_pca(X, n_components = 2):
     return PCA().fit_transform(X)
 
-def draw_reduced_space(components, s_y, n_components=2, legend_labels = ['L-mode','QCE H-mode','ELMy H-mode'], legend_title = "LHD Label", title=''):
+def draw_reduced_space(components, s_y, n_components=2, legend_labels = None, legend_title = "LHD Label", title=''):
     """
     Draws reduced data (components) on a 2D graph or 3D depending on the number of components (n_components)
     and displays the labels (s_y)
+    
+    legend_labels must be the labels of all the unique values in s_y (increasing order)
     """
+    if legend_labels == None: #then we are visualizing the QCE states
+        #The legend_labels must be a subset of ['L-mode', 'QCE H-mode', 'ELMy H-mode'] where elements are in the same order
+        #it indicates the labels that are in s_y
+        legend_mapping = {0: 'L-mode', 1: 'QCE H-mode', 2: 'ELMy H-mode'}
+        legend_labels = [legend_mapping[val] for val in sorted(np.unique(s_y)) if val in legend_mapping]
+    
+    
     if n_components == 1:
         print("That's not a very interesting plot, go for more than a single component")
         return
