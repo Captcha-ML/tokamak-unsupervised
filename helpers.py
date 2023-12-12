@@ -69,11 +69,17 @@ def draw_reduced_space(components, s_y, n_components=2, legend_labels = None, le
     
     legend_labels must be the labels of all the unique values in s_y (increasing order)
     """
-    if legend_labels == None: #then we are visualizing the QCE states
-        #The legend_labels must be a subset of ['L-mode', 'QCE H-mode', 'ELMy H-mode'] where elements are in the same order
-        #it indicates the labels that are in s_y
+    if legend_labels is None:
         legend_mapping = {0: 'L-mode', 1: 'QCE H-mode', 2: 'ELMy H-mode'}
-        legend_labels = [legend_mapping[val] for val in sorted(np.unique(s_y)) if val in legend_mapping]
+        unique_labels = sorted(np.unique(s_y))
+        legend_labels = [legend_mapping[label] for label in unique_labels if label in legend_mapping]
+
+        # If there's a label in s_y not in legend_mapping, handle it appropriately
+        for label in unique_labels:
+            if label not in legend_mapping:
+                print(f"Warning: Label {label} is not defined in legend_mapping.")
+                legend_labels.append(f"Unknown Label {label}")
+
     
     
     if n_components == 1:
