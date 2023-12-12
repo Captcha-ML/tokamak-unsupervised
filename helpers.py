@@ -70,7 +70,7 @@ def draw_reduced_space(components, s_y, n_components=2, legend_labels = None, le
     legend_labels must be the labels of all the unique values in s_y (increasing order)
     """
     if legend_labels is None:
-        legend_mapping = {0: 'L-mode', 1: 'QCE H-mode', 2: 'ELMy H-mode'}
+        legend_mapping = {1: 'L-mode', 2: 'QCE H-mode', 3: 'ELMy H-mode'}
         unique_labels = sorted(np.unique(s_y))
         legend_labels = [legend_mapping[label] for label in unique_labels if label in legend_mapping]
 
