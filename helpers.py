@@ -44,9 +44,18 @@ def get_training_data(include_time, include_shotnumber, shot_indices = range(0,3
 
     X = df_data_analysis.drop(["LHD_label"], axis=1)
     y = df_data_analysis["LHD_label"]
-
+    
     scaler = StandardScaler()
-    X_standardized = scaler.fit_transform(X)
+    # we don't want to normalize the time and shotnumber columns
+    if include_time or include_shotnumber:
+        unchanged_columns = X.iloc[:, :include_time+include_shotnumber].values
+        
+        X_standardized_columns = scaler.fit_transform(X.iloc[:,include_time+include_shotnumber:])
+        
+        X_standardized = np.column_stack((unchanged_columns, X_standardized_columns))
+    else:
+        X_standardized = scaler.fit_transform(X)
+        
     return X_standardized, y, desired_columns
 
 def perform_umap(X, n_neighbors=15, min_dist=0.1, n_components=2, metric='euclidean'):
