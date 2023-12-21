@@ -36,5 +36,5 @@ Please note that some cells in the notebooks might execute faster than others. T
 
 - Ensure that your Python environment has all the required dependencies installed. Refer to the `requirements.txt` file for a list of necessary packages.
 - It's recommended to run these notebooks in a virtual environment to avoid dependency conflicts with other Python projects.
-
+- Note that we preserved the separated implementations of each part of the analysis in the github corresponding to each section of the `run.ipynb`. these files are respectively `initial_analysis.ipynb`, `clustering.ipynb`, `supervised_baseline.ipynb` and `RNN_final.ipynb`
 Happy Analyzing!
