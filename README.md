@@ -22,6 +22,9 @@ a. **Data Download**:
 
 b. **Helper Existence**:
    - Have in the same folder as the jupyter notebook, the helper file `helpers.py`. This file contains many tools for data analysis and collection.
+     
+c. **Model Download**:
+   - Download the needed model and parameters file named `ltsm10^-3_4_7_0.2` (model), `x_mean.pt` and `x_std.pt` (means and std for standardization) from the `QCE_data` folder
 
 ## Execution
 
