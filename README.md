@@ -1,19 +1,39 @@
-# tokamak-unsupervised
+# QCE Plasma regime investigation
 
-What we did:
-PCA 3D of a few shots
-Saw that the data was "continuous"
-Validated this using DBSCAN: shots were put into one cluster
+Welcome to our project! This guide will help you get started with running the machine learning models in this repository.
 
-What we need to do:
-Use UMAP (clustering-algo) on as many shots as possible and look for insights
-Decide how to consider time
-We re going to do some unsupervised clustering and PCA, but can do supervised stuff to consider corelations between shots and machine inputs.
+## Getting Started
 
-The objective of the project is to get a deeper understanding of what machine inputs result in the QCEH states that we are interested in.
-Many shots have small differences in parameters as they build upon eachother. The researchers are quite biased as they read papers and have biased opinions about what results in better experiments. Our job is to find patterns and try to back up or even refute these assumptions.
+There are two main Jupyter notebooks in this project, each serving a different purpose:
 
+1. **Run.ipynb**:
+   - Use this file if you want to dive deep into all implementations and the reasoning behind them. It's a comprehensive notebook that covers the entire workflow from data preprocessing to model training and evaluation.
 
+2. **Predict.ipynb**:
+   - This file is for those who want to directly run the supervised model. It's streamlined for quick execution and getting predictions from the model without delving into the underlying details.
 
-We also disccused the following thing but its not our priority for now
-Decided to do some kind of KNN in lower PCA space
+## Prerequisites
+
+Before running either of the Jupyter notebooks, please ensure the following steps are completed:
+
+a. **Data Download**:
+   - Download the necessary datasets (both `.parquet` and `.csv` files) into a folder named `QCEH_data`. This data is crucial for the execution of the notebooks.
+
+b. **Precomputed Data**:
+   - Download the computationally expensive data from the `precomputed_data` file. This data is used for certain parts of the analysis to save on computation time.
+
+## Execution
+
+After setting up the data, you can simply open and run the Jupyter notebooks:
+
+- Run.ipynb
+- Predict.ipynb
+
+Please note that some cells in the notebooks might execute faster than others. The entire process may take approximately 1-2 hours of computation time, depending on your system's capabilities.
+
+## Additional Information
+
+- Ensure that your Python environment has all the required dependencies installed. Refer to the `requirements.txt` file for a list of necessary packages.
+- It's recommended to run these notebooks in a virtual environment to avoid dependency conflicts with other Python projects.
+
+Happy Analyzing!
