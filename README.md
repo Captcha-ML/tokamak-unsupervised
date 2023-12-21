@@ -33,7 +33,7 @@ After setting up the data, you can simply open and run the Jupyter notebooks:
 - run.ipynb
 - predict.ipynb
 
-Please note that some cells in the run notebook might execute faster than others. The entire run.ipynb may take approximately 1-2 hours of computation time, depending on your system's capabilities. predict.ipynb on the other hand is quite fast.
+Please note that some cells in the run notebook might execute faster than others. The entire `run.ipynb` may take approximately 1-2 hours of computation time, depending on your system's capabilities. `predict.ipynb` on the other hand is quite fast.
 
 ## Additional Information
 
