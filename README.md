@@ -18,9 +18,10 @@ Before running either of the Jupyter notebooks, please ensure the following step
 
 a. **Data Download**:
    - Download the necessary datasets (both `.parquet` and `.csv` files) into a folder named `QCEH_data`. This data is crucial for the execution of the notebooks.
-
-b. **Precomputed Data**:
    - Download the computationally expensive data from the `precomputed_data` file. This data is used for certain parts of the analysis to save on computation time.
+
+b. **Helper Existence**:
+   - Have in the same folder as the jupyter notebook, the helper file `helpers.py`. This file contains many tools for data analysis and collection.
 
 ## Execution
 
