@@ -7,10 +7,10 @@ Welcome to our project! This guide will help you get started with running the ma
 There are two main Jupyter notebooks in this project, each serving a different purpose:
 
 1. **Run.ipynb**:
-   - Use this file if you want to dive deep into all implementations and the reasoning behind them. It's a comprehensive notebook that covers the entire workflow from data preprocessing to model training and evaluation.
+   - Use this file if you want to dive deep into all implementations and the reasoning behind them. It's a comprehensive notebook that covers the entire workflow from data preprocessing, both unsupervised and supervised approach, model training and evaluation.
 
 2. **Predict.ipynb**:
-   - This file is for those who want to directly run the supervised model. It's streamlined for quick execution and getting predictions from the model without delving into the underlying details.
+   - This file is for those who want to directly run the LSTM supervised model. It's designed for quick execution and getting predictions from the model without getting into the underlying details.
 
 ## Prerequisites
 
