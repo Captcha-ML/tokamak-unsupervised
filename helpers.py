@@ -115,3 +115,71 @@ def draw_reduced_space(components, s_y, n_components=2, legend_labels = None, le
     plt.legend(handles=sc.legend_elements()[0], labels=legend_labels, loc='upper right', title = legend_title)
     plt.title(title, fontsize=12)
     plt.show()
+
+def get_train_data_and_scaler(include_time, include_shotnumber, shot_indices=range(0, 30)):
+    """
+    Given a list of indices in the 0 to 60 (excluded) range,
+    this function returns DataFrame X and Series y composed of the shots at those given indices
+
+    sometimes we may or may not want to include time and and shotnumber which is why we include the two boolean arguments
+
+    return:
+        X: Dataframe with the machine inputs as columns/features and samples as rows
+        y: Series with the labels of the associated samples in X
+        desired_columns: list of feature names, aka the columns of X and y in that order
+    """
+    file_names = glob.glob(os.path.join('', f'QCEH_data/TCV_DATAno*.parquet'))
+    df_list = [pd.read_parquet(x).drop(columns=['alpha', 'H98y2calc'], errors='ignore') for x in file_names]
+    df_training = pd.concat([df_list[idx] for idx in shot_indices], ignore_index=True)
+
+    desired_columns = Machine_inputs + ["LHD_label"]
+    if include_time:
+        desired_columns.insert(0, "time")
+    if include_shotnumber:
+        desired_columns.insert(0, "shotnumber")
+
+    df_data_analysis = df_training[desired_columns]
+
+    X = df_data_analysis.drop(["LHD_label"], axis=1)
+    y = df_data_analysis["LHD_label"]
+    scaler = StandardScaler()
+    scaler.fit(X)
+
+    # we don't want to normalize the time and shotnumber columns
+    if include_time or include_shotnumber:
+        unchanged_columns = X.iloc[:, :include_time + include_shotnumber].values
+
+        X_standardized_columns = scaler.transform(X.iloc[:, include_time + include_shotnumber:])
+
+        X_standardized = np.column_stack((unchanged_columns, X_standardized_columns))
+    else:
+        X_standardized = scaler.transform(X)
+
+    return X_standardized, y, desired_columns, scaler
+
+def get_test_data(include_time, include_shotnumber, scaler, shot_indices=range(0, 30), ):
+    file_names = glob.glob(os.path.join('', f'QCEH_data/TCV_DATAno*.parquet'))
+    df_list = [pd.read_parquet(x).drop(columns=['alpha', 'H98y2calc'], errors='ignore') for x in file_names]
+    df_training = pd.concat([df_list[idx] for idx in shot_indices], ignore_index=True)
+
+    desired_columns = Machine_inputs + ["LHD_label"]
+    if include_time:
+        desired_columns.insert(0, "time")
+    if include_shotnumber:
+        desired_columns.insert(0, "shotnumber")
+
+    df_data_analysis = df_training[desired_columns]
+
+    X = df_data_analysis.drop(["LHD_label"], axis=1)
+    y = df_data_analysis["LHD_label"]
+    # we don't want to normalize the time and shotnumber columns
+    if include_time or include_shotnumber:
+        unchanged_columns = X.iloc[:, :include_time + include_shotnumber].values
+
+        X_standardized_columns = scaler.transform(X.iloc[:, include_time + include_shotnumber:])
+
+        X_standardized = np.column_stack((unchanged_columns, X_standardized_columns))
+    else:
+        X_standardized = scaler.transform(X)
+
+    return X_standardized, y, desired_columns
