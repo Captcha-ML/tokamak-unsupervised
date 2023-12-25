@@ -17,7 +17,7 @@ There are two main Jupyter notebooks in this project, each serving a different p
 Before running either of the Jupyter notebooks, please ensure the following steps are completed:
 
 a. **Data Download**:
-   - Download the necessary datasets (both `.parquet` and `.csv` files) into/from a folder named `QCEH_data`. This data is crucial for the execution of the notebooks.
+   - Download the necessary datasets (both `.parquet` and `.csv` files) into/from a folder named `QCEH_data`. This data is crucial for the execution of the notebooks. Note that only a subset of the data we used is present here as examples. If you want access to additional data, feel free to contact the [EPFL SPC lab](https://www.epfl.ch/research/domains/swiss-plasma-center/), further data could be made available upon reasonable request.
    - Download the computationally expensive data from the `precomputed_data` directory. This data is used for certain parts of the analysis to save on computation time.
 
 b. **Helper Existence**:
